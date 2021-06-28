@@ -1,0 +1,22 @@
+name: Tests
+
+on: push
+
+jobs:
+  functional-tests:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: make build init
+
+      - name: Launch functional-tests
+        run: make integration-functional-test
+
+      - name: Launch unit-tests
+        run: make integration-unit-test
+

@@ -1,0 +1,30 @@
+version:  '3.8'
+services:
+  postgres:
+    image: postgres:13.2-alpine
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: site
+    ports:
+      - '5432:5432'
+
+  php:
+    image: site-api:dev
+    depends_on:
+      - "postgres"
+    volumes:
+      - './:/var/www'
+    env_file:
+      - .env
+    user: $ID_USER:$ID_GROUP
+
+  nginx:
+    image: nginx:1.19.6-alpine
+    depends_on:
+      - "postgres"
+      - "php"
+    volumes:
+      - './nginx/nginx.conf:/etc/nginx/nginx.conf'
+    ports:
+      - '80:80'

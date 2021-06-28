@@ -1,0 +1,8 @@
+default:
+    suites:
+        default:
+            contexts:
+                - App\Tests\Functionnal\Infrastructure\HealthCheckContext
+
+    extensions:
+        FriendsOfBehat\SymfonyExtension: null

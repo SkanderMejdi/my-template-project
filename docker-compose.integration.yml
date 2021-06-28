@@ -1,0 +1,17 @@
+version:  '3.8'
+services:
+  postgres_test:
+    image: postgres:13.2-alpine
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: site_test
+
+  php:
+    image: site-api:dev
+    depends_on:
+      - "postgres_test"
+    env_file:
+      - .env.test
+    environment:
+      - APP_ENV=test

@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\Functionnal\:
+        resource: '../tests/Functionnal/*'
+
+    App\Tests\Unit\:
+        resource: '../tests/Unit/*'
+    
+    Faker\Generator:
+        factory: Faker\Factory::create
