@@ -14,6 +14,9 @@ start:
 
 composer:
 	$(PHP_EXEC) composer install
+
+sh:
+	$(PHP_EXEC) sh
  
 database:
 	$(PHP_EXEC) bin/console doctrine:migrations:migrate
